@@ -1,0 +1,29 @@
+#include<iostream>
+#include<iomanip>
+#include<stdlib.h>
+using namespace std;
+
+
+int main()
+{
+    int n=30,m=30,q=0;
+    srand(time(0));
+    int array2d[n][m];
+    int* array1d = new int[n*m];
+    cout<<"Matrix "<<n<<"x"<<m<<":"<<endl;
+    for (int i=0;i<n;i++) {
+        for (int j=0;j<m;j++) {
+            array2d[i][j] = rand()%10;
+            array1d[q] = array2d[i][j];
+            q++;
+            cout<< array2d[i][j] <<" ";
+        }
+        cout<<endl;
+    }
+    cout<<"Array von Matrix "<<n<<"x"<<m<<":"<<endl;
+    for(int i=0;i <n*m;i++) {
+        cout<< array1d[i] << " ";
+    }
+
+    return 0;
+}
