@@ -1,0 +1,110 @@
+#include<iostream>
+#include<iomanip>
+#include<stdlib.h>
+#include <math.h>
+#include <stdio.h>
+using namespace std;
+
+class GameOfLife{
+    int rows,columns;
+  public:
+    GameOfLife (int,int);
+    GameOfLife ();
+    //int ** table();
+    int table();
+    int moorecheck(int,int);
+};
+
+GameOfLife::GameOfLife (int a,int b){
+    rows = a;
+    columns = b;
+}
+GameOfLife::GameOfLife (){
+    rows = 30;
+    columns = 30;
+}
+int GameOfLife::table() {
+    int matrix[rows][columns];
+    cout << "Matrix " << rows << "x" << columns << ":" << "\n";
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < columns; j++) {
+            matrix[i][j] = 0;
+            cout<<matrix[i][j]<<" ";
+        }
+        cout << endl;
+    }
+    return matrix[rows][columns];
+}
+/*  Hier ist double pointer(auskommentiert) da Leider bei der Ausgabe des Wertes  das Programm absturzt
+int **GameOfLife::table() {
+    //int matrix[rows][columns];
+    int** p;
+    p= new int*[rows];
+    cout << "Matrix " << rows << "x" << columns << ":" << "\n";
+    for (int i = 0; i < rows; i++) {
+        p[rows]=new int[columns];
+        for (int j = 0; j < columns; j++) {
+            p[i][j] = 0;
+            cout << p[i][j] << " ";
+        }
+        cout << endl;
+    }
+    return p;
+}
+*/
+int GameOfLife::moorecheck(int c,int d){
+    int matrix[rows][columns];
+    int count = 0;
+
+    for (int i = c -2; i < c; i++) {
+        for (int j = d-2; j < d; j++){
+            if ((matrix[i][j]==1)&&(matrix[i][j] != matrix[c-1][d-1])){
+                count +=1;
+            }
+            else{
+                continue;
+            }
+        }
+    }
+   return count;
+}
+
+
+int main () {
+    string eingabe;
+    int i,j;
+    //int matrix[i][j];
+    cout<< "Moechten Sie die vorgegebene Feldgrosse 30x30 andern,Y/N?:";
+    cin>>eingabe;
+    if ((eingabe == "Y")||(eingabe=="y")) {
+        int n, m;
+        cout << "Geben Sie Anzahl der Zeilen ein";
+        cin >> n;
+        cout << "Geben Sie Anzahl der Spalten ein";
+        cin >> m;
+        GameOfLife versuch (n,m);
+        versuch.table();
+        //int** my2DArray = versuch.table();
+        //my2DArray[3][3] = 1;
+        //for (int h = 0; h < n; h++) {
+        //    for (int w = 0; w < m; w++){
+        //    cout<<my2DArray[h][w]<<" ";
+        //    }
+        //cout << endl;
+        //}
+
+
+    }
+    else if ((eingabe == "N")||(eingabe=="n")){
+        GameOfLife versuch2;
+        versuch2.table();
+
+    }
+    else{
+        cout << "Leider werden nur Y - Yes und N - No akzeptiert\n";
+        main();
+    }
+
+
+    //return 0;
+}
