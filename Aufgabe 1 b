@@ -1,0 +1,64 @@
+#include<iostream>
+#include<iomanip>
+#include<stdlib.h>
+#include <math.h>
+using namespace std;
+
+int twod(int rows,int columns)
+{
+    srand(time(0));
+    int matrix[rows][columns];
+    cout<<"Matrix "<<rows<<"x"<<columns<<":"<<"\n";
+    for (int i=0;i<rows;i++) {
+        for (int j = 0; j < columns; j++) {
+            matrix[i][j] = rand() % 10;
+            cout<< matrix[i][j] <<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
+
+int oned(int values)
+{
+    int array[values];
+    cout<<"Array mit "<<values<<" Values:"<<"\n";
+    srand(time(0));
+    for (int i=0;i<values;i++) {
+        array[i] = rand() % 10;
+        cout<< array[i] <<" ";
+    }
+    cout<<endl;
+    return 0;
+}
+
+int main()
+{   int eingabe;
+    cout<<"Was moechten Sie erstellen?\n"
+        <<"1 - 1 Dimensionale Array\n"
+        <<"2 - 2 Dimensionale Array\n"
+        <<"q - Exit\n";
+    cin>>eingabe;
+    if (eingabe == 1){
+        int l;
+        cout<<"Geben Sie Anzahl der Werten ein:";
+        cin>>l;
+
+        oned(l);
+
+        twod(sqrt(l),sqrt(l));
+    }
+    else if (eingabe == 2){
+        int n,m;
+        cout<<"Geben Sie Anzahl der Zeilen ein";
+        cin>>n;
+        cout<<"Geben Sie Anzahl der Spalten ein";
+        cin>>m;
+        twod(n,m);
+        oned(n*m);
+
+    }
+    else {
+        cout<<"Exit";
+    }
+}
